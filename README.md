@@ -3,7 +3,7 @@
 A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/index.html) digital circuit simulator.
 
 - [Basic 8-bits computer simulation](#basic-8-bits-computer-simulation)
-  - [Project objective](#project-objective)
+  - [Project goal](#project-goal)
   - [Acknowledgments](#acknowledgments)
   - [The current processor version](#the-current-processor-version)
   - [The BUS](#the-bus)
@@ -11,9 +11,9 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
   - [The 8-bits Arithmetic and Logic Unit (ALU)](#the-8-bits-arithmetic-and-logic-unit-alu)
   - [The 8-bits registers](#the-8-bits-registers)
 
-## Project objective
+## Project goal
 
-This project objective is to build a basic 8-bits computer with a functional 8-bits processor using a digital circuit simulator (LogiSim).
+This project goal is to build a basic 8-bits computer with a functional 8-bits processor using a digital circuit simulator (LogiSim).
 
 For future versions I will expand the circuits modules functionalities creating a more complex processor, but for now, I'm trying to keep the circuits as simple as possible.
 
@@ -41,7 +41,7 @@ The data bus:
 
 ## The full adder
 
-This is the circuit responsible for sum two numbers. It's a important piece for the ALU.
+This is the circuit responsible for sum two numbers. It's a important ALU piece.
 
 ![The full adder](images/full_adder.png)
 
