@@ -33,7 +33,7 @@ Is there anything missing? Yes, I know, the program counter (PC), instructions d
 
 The BUS is used to connect all processor modules allowing the components to communicate with each other.
 
-Normally there is more than 1 bus in a processor, like the data BUS, address BUS, control BUS, etc. For the first processor version I'm using only 2 BUS, one for data e one for control.
+Normally there is more than 1 bus in a processor, like the data BUS, address BUS, control BUS, etc. For the first processor version I'm using only 2 BUS, one for data and one for control.
 
 The data bus:
 
@@ -49,7 +49,7 @@ This is the circuit responsible for sum two numbers. It's a important ALU piece.
 
 The ALU executes the arithmetic (sum, subtract, multiplication, division) and logic (and, or, xor, not, comparison) operations inside the processor. In my processor, the ALU is directly connected to the registers A and B to use them as source to perform the operations.
 
-For this first processor version, I will only implement the ALU sum and subtraction operations, reserving the other operations for a future version.
+For this first processor version, I will only implement the sum and subtraction operations, reserving the other operations for a future version.
 
 ![The ALU](images/alu_8bits.png)
 
