@@ -1,6 +1,6 @@
 # Basic 8-bits computer simulation
 
-A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/index.html) digital circuit simulator.
+A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/index.html) digital circuit simulator :computer:.
 
 - [Basic 8-bits computer simulation](#basic-8-bits-computer-simulation)
   - [Project goal](#project-goal)
@@ -61,11 +61,11 @@ For this first processor version, I will only implement the sum and subtraction 
 
 ## The 4-bits address decoder
 
-The address decoder is responsable for decode one binary address to a binary signal (1-bit). For each address the circuit will activated one different ouput.
+The address decoder is responsible for decode one binary address to a binary signal (1-bit). For each address the circuit will activated one different output.
 
-This circuit decodes each of the 4-bits address to a different output signal in a total of 16 ouputs. 
+This circuit decodes each of the 4-bits address to a different output signal in a total of 16 outputs. 
 
-![The 4-bits addres decoder](images/address_decoder_4-bits.png)
+![The 4-bits address decoder](images/address_decoder_4-bits.png)
 
 ## The 8-bits registers
 
@@ -89,7 +89,7 @@ This is the internal 8-bits register circuit:
 
 ## The RAM
 
-The RAM (Random Access Memory) is responsable for store values with 8-bits each (word size). This values will include the program binary and the program variables.
+The RAM (Random Access Memory) is responsible for store values with 8-bits each (word size). This values will include the program binary and the program variables.
 
 ### The DRAM and SRAM
 
