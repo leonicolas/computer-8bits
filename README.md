@@ -16,7 +16,7 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
     - [The 16 bytes SRAM](#the-16-bytes-sram)
     - [The 256 bytes SRAM](#the-256-bytes-sram)
   - [The program counter (PC)](#the-program-counter-pc)
-  - [The microcode / instructions set](#the-microcode--instructions-set)
+  - [The microcode / instruction set](#the-microcode--instruction-set)
  
 ## Project goal
 
@@ -123,7 +123,7 @@ The program counter is a special register responsible for storing the address of
 
 ![The Program counter](images/counter_8-bits.png)
 
-## The microcode / instructions set
+## The microcode / instruction set
 
 The *instruction set* provides commands to the processor, to tell it what it needs to do. 
 
