@@ -16,6 +16,7 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
     - [The 16 bytes SRAM](#the-16-bytes-sram)
     - [The 256 bytes SRAM](#the-256-bytes-sram)
   - [The program counter (PC)](#the-program-counter-pc)
+  - [The microcode / instructions set](#the-microcode--instructions-set)
  
 ## Project goal
 
@@ -117,4 +118,13 @@ The image bellow is the 256 bytes SRAM memory circuit. For only 256 bytes we hav
 ![The 256 bytes SRAM](images/SRAM_256-bytes.png)
 
 ## The program counter (PC)
- 
+
+The program counter is a special register responsible for storing the address of the next instruction that will be processed when the current instruction processing finishes. This circuit is basically a binary counter that allows not only increment the counter value, but also to change the current value for a new one. This capability is used to create jump instructions.
+
+![The Program counter](images/counter_8-bits.png)
+
+## The microcode / instructions set
+
+The *instruction set* provides commands to the processor, to tell it what it needs to do. 
+
+I didn't finished yet the process instruction set but you can follow the creation process through the sheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0).
