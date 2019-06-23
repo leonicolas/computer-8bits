@@ -2,21 +2,22 @@
 
 A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/index.html) digital circuit simulator :computer:.
 
-- [Basic 8-bits computer simulation](#basic-8-bits-computer-simulation)
-  - [Project goal](#project-goal)
-  - [Acknowledgments](#acknowledgments)
-  - [The current processor version](#the-current-processor-version)
-  - [The BUS](#the-bus)
-  - [The full adder](#the-full-adder)
-  - [The 8-bits Arithmetic and Logic Unit (ALU)](#the-8-bits-arithmetic-and-logic-unit-alu)
-  - [The 4-bits address decoder](#the-4-bits-address-decoder)
-  - [The 8-bits registers](#the-8-bits-registers)
-  - [The RAM](#the-ram)
-    - [The DRAM and SRAM](#the-dram-and-sram)
-    - [The 16 bytes SRAM](#the-16-bytes-sram)
-    - [The 256 bytes SRAM](#the-256-bytes-sram)
-  - [The program counter (PC)](#the-program-counter-pc)
-  - [The microcode / instruction set](#the-microcode--instruction-set)
+- [Basic 8-bits computer simulation](#Basic-8-bits-computer-simulation)
+  - [Project goal](#Project-goal)
+  - [Acknowledgments](#Acknowledgments)
+  - [The current processor version](#The-current-processor-version)
+  - [The BUS](#The-BUS)
+  - [The full adder](#The-full-adder)
+  - [The 8-bits Arithmetic and Logic Unit (ALU)](#The-8-bits-Arithmetic-and-Logic-Unit-ALU)
+  - [The 4-bits address decoder](#The-4-bits-address-decoder)
+  - [The 8-bits registers](#The-8-bits-registers)
+  - [The RAM](#The-RAM)
+    - [The DRAM and SRAM](#The-DRAM-and-SRAM)
+    - [The 16 bytes SRAM](#The-16-bytes-SRAM)
+    - [The 256 bytes SRAM](#The-256-bytes-SRAM)
+  - [The program counter (PC)](#The-program-counter-PC)
+  - [The microcode / instruction set](#The-microcode--instruction-set)
+  - [The 8-bits to 7-segments decoder](#The-8-bits-to-7-segments-decoder)
  
 ## Project goal
 
@@ -32,7 +33,7 @@ For future versions I will expand the circuits modules and functionalities creat
 
 This is the current processor circuit version. It's not complete yet, but it's quite cool, isn't?.
 
-![The processor](images/processor.png)
+![The processor](images/counting.gif)
 
 Is there anything missing? Yes, I know, the ~~program counter (PC)~~, instructions decoder, the ~~RAM memory~~, etc. I'll put these modules into the processor in the next versions.
 
@@ -125,6 +126,25 @@ The program counter is a special register responsible for storing the address of
 
 ## The microcode / instruction set
 
-The *instruction set* provides commands to the processor, to tell it what it needs to do. 
+The *instruction set* is the basic list of instructions provided by the processor telling it what it needs to execute.
 
-I didn't finished yet the process instruction set but you can follow the creation process through the sheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0).
+I didn't finished yet the processor instruction set but you can follow the creation process through the spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0).
+
+## The 8-bits to 7-segments decoder
+
+This circuit decodes a 8-bits number showing it in a base 10 number into a set of 3 7-segment displays.
+
+The 7-segments display uses segments from A to B plus decimal point segment to represent a number.
+
+![7-segments diaplay](images/7-segments_display.png)
+
+There are a several ways to decode a number to show it into a 7-segment display. My approach was to use a ROM with the decoding codes. Using a 21-bits word (7-bits for which display) I constructed all decoding codes possibilities to show a number from 0 to 255 (8-bits). I created the script [generate_8-bits_7-segments_hex_decoder.py](https://github.com/leonicolas/computer-8bits/blob/master/scripts/generate_8-bits_7-segments_hex_decoder.py) to help me generate the entire ROM content.
+
+As an example, the code bellow decodes the number *123* from it 8-bits representation to the 7-segments format.
+
+|   ROM address   | Segment (Hundreds) |  Segment 2 (Tens)  |  Segment 3 (Ones)  |    Hex   |
+|:---------------:|:------------------:|:------------------:|:------------------:|:--------:|
+|     Segments => |    g f e d c b a   |    g f e d c b a   |    g f e d c b a   |          |
+| 123 = 0111 1011 |    0 0 0 0 1 1 0   |    1 0 1 1 0 1 1   |    1 0 0 1 1 1 1   | 0x01adcf |
+
+
