@@ -75,13 +75,14 @@ A register is a processor piece that is responsible for storing information. In 
 
 The register works using a D flip-flop for store a bit. Each 8-bits register uses 8 D flip-flop for store a byte (8-bits).
 
-This processor will use 5 registers: 
+This processor will use 6 registers: 
 
 1) Program counter register (PC)
 2) Register A connected to the ALU
 3) Register B connected to the ALU
 4) Instruction register
 5) Memory address register
+6) Output register
 
 The RAM memory used in this computer also uses the 8-bits registry.
 
