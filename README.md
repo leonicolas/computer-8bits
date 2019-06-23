@@ -115,7 +115,7 @@ The 16 bytes SRAM uses 16 registers to store 1 byte each and a 4-bits length add
 
 This computer uses a 256 bytes SRAM memory composed by 16 SRAM modules with 16 bytes each (16 x 16 bytes = 256 bytes).
 
-The image bellow is the 256 bytes SRAM memory circuit. For only 256 bytes we have this crazy complexity, remembering that each one of the 16 SRAM shown in the circuit is a [16 bytes SRAM](#the-16-bytes-sram), imagine a 16GB RAM memory! Wow! :flushed:
+The image below is the 256 bytes SRAM memory circuit. For only 256 bytes we have this crazy complexity, remembering that each one of the 16 SRAM shown in the circuit is a [16 bytes SRAM](#the-16-bytes-sram), imagine a 16GB RAM memory! Wow! :flushed:
 
 ![The 256 bytes SRAM](images/SRAM_256-bytes.png)
 
@@ -143,7 +143,7 @@ There are several ways to decode a number to show it into a 7-segment display. M
 
 I created the script [generate_8-bits_7-segments_hex_decoder.py](https://github.com/leonicolas/computer-8bits/blob/master/scripts/generate_8-bits_7-segments_hex_decoder.py) to help me generate the entire ROM content.
 
-As an example, the code bellow decodes the number *123* from it 8-bits representation to the 7-segments format.
+As an example, the code below decodes the number *123* from it 8-bits representation to the 7-segments format.
 
 |   ROM address   | Hundreds Segment |   Tens Segment   |   Ones Segment   |    Hex   |
 |:---------------:|:----------------:|:----------------:|:----------------:|:--------:|
