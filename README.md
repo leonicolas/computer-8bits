@@ -135,9 +135,9 @@ I didn't finished yet the processor instruction set but you can follow the creat
 
 This circuit decodes a 8-bits number showing it in a base 10 number into a set of 3 7-segment displays.
 
-The 7-segments display uses segments from A to B plus decimal point segment to represent a number.
+The 7-segments display uses segments from A to G plus decimal point segment to represent a number.
 
-![7-segments diaplay](images/7-segments_display.png)
+![7-segments display](images/7-segments_display.png)
 
 There are several ways to decode a number to show it into a 7-segment display. My approach was to use a ROM with the decoding codes. Using a 21-bits word (7-bits for which display) I constructed all decoding codes possibilities to show a number from 0 to 255 (8-bits).
 
@@ -149,5 +149,3 @@ As an example, the code below decodes the number *123* from it 8-bits representa
 |:---------------:|:----------------:|:----------------:|:----------------:|:--------:|
 |     Segments => |   g f e d c b a  |   g f e d c b a  |   g f e d c b a  |          |
 | 123 = 0111 1011 |   0 0 0 0 1 1 0  |   1 0 1 1 0 1 1  |   1 0 0 1 1 1 1  | 0x01adcf |
-
-
