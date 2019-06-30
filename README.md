@@ -34,9 +34,9 @@ For future versions I will expand the circuits modules and functionalities creat
 
 This is the current processor circuit version. It's not complete yet, but it's quite cool, isn't?.
 
-![The processor](images/counting.gif)
+![The processor](images/processor.png)
 
-Is there anything missing? Yes, I know, the ~~program counter (PC)~~, instructions decoder, the ~~RAM memory~~, etc. I'll put these modules into the processor in the next versions.
+Is there anything missing? Yes, I know, the ~~program counter (PC)~~, ~~instructions decoder~~, the ~~RAM memory~~, etc. I'll put these modules into the processor in the next versions.
 
 ## The BUS
 
