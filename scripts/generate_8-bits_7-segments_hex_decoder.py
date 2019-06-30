@@ -1,4 +1,4 @@
-#!python
+#!python3
 # This script generates the hex table used to decode 
 # an 8-bits number to show it in a 7-segment display
 # in base 10 (0 to 255).
@@ -6,6 +6,7 @@
 # decoder circuit.
 
 import sys
+import save_rom
 
 def generate_codes():
     # Codes for 0 to 9 decode - segments bits order g, f, e, d, c, b, a.
@@ -38,23 +39,10 @@ def generate_codes():
 
     return codes_table
 
-def save_rom_file(file_name, codes_table, cols = 8):
-    file = open(file_name, "w+", encoding="utf-8")
-    file.write("v2.0 raw\n")
-    col = 0
-    for code in codes_table:
-        col += 1
-        file.write("{:06x}".format(code))
-        file.write(" ")
-        if(col > cols - 1):
-            col = 0
-            file.write("\n")
-    file.close()
-
 # Run script
 file_name = "data.rom"
 if(len(sys.argv) > 1):
     file_name = sys.argv[1]
 
 codes_table = generate_codes()
-save_rom_file(file_name, codes_table)
+save_rom.save_file(file_name, codes_table)
