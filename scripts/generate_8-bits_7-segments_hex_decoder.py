@@ -5,8 +5,8 @@
 # The hex table is write into a ROM chip in our 
 # decoder circuit.
 
-import sys
 import save_rom
+import sys
 
 def generate_codes():
     # Codes for 0 to 9 decode - segments bits order g, f, e, d, c, b, a.
@@ -39,10 +39,17 @@ def generate_codes():
 
     return codes_table
 
-# Run script
-file_name = "data.rom"
-if(len(sys.argv) > 1):
-    file_name = sys.argv[1]
+# Validates the filename parameter.
+if(len(sys.argv) <= 1):
+    print "Invalid file name."
+    exit 1
 
+# Gets the file name.
+file_name = sys.argv[1]
+
+# Generates the codes table.
 codes_table = generate_codes()
-save_rom.save_file(file_name, codes_table)
+
+# Saves the code table in a ROM file.
+instruction_size = 24 # bytes
+save_rom.save_file(file_name, codes_table, instruction_size)

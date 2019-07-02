@@ -1,2 +1,4 @@
 scripts/*.rom
 .vscode
+__pycache__
+coverage
