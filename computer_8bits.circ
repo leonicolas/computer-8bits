@@ -2886,12 +2886,12 @@ end TCL_Generic;
     <wire from="(160,550)" to="(250,550)"/>
     <wire from="(520,250)" to="(540,250)"/>
     <wire from="(470,750)" to="(500,750)"/>
-    <wire from="(200,290)" to="(200,390)"/>
-    <wire from="(200,490)" to="(200,590)"/>
-    <wire from="(240,170)" to="(240,270)"/>
-    <wire from="(240,370)" to="(240,470)"/>
     <wire from="(200,690)" to="(200,790)"/>
     <wire from="(240,570)" to="(240,670)"/>
+    <wire from="(240,370)" to="(240,470)"/>
+    <wire from="(240,170)" to="(240,270)"/>
+    <wire from="(200,290)" to="(200,390)"/>
+    <wire from="(200,490)" to="(200,590)"/>
     <wire from="(550,190)" to="(550,350)"/>
     <wire from="(170,450)" to="(250,450)"/>
     <wire from="(310,350)" to="(390,350)"/>
@@ -3852,8 +3852,8 @@ end TCL_Generic;
     <wire from="(750,1860)" to="(750,2130)"/>
     <wire from="(410,190)" to="(470,190)"/>
     <wire from="(360,1230)" to="(550,1230)"/>
-    <wire from="(570,400)" to="(570,670)"/>
     <wire from="(520,1950)" to="(520,2220)"/>
+    <wire from="(570,400)" to="(570,670)"/>
     <wire from="(510,1940)" to="(510,2210)"/>
     <wire from="(730,2040)" to="(730,2050)"/>
     <wire from="(530,1960)" to="(530,2230)"/>
@@ -6826,27 +6826,27 @@ end TCL_Generic;
       <rect fill="none" height="70" stroke="#000000" stroke-width="2" width="270" x="50" y="50"/>
       <text fill="#ffffff" font-family="Courier 10 Pitch" font-size="14" font-weight="bold" text-anchor="middle" x="160" y="564">Instruction_decoder</text>
       <circ-port height="10" pin="440,470" width="10" x="195" y="45"/>
-      <circ-port height="8" pin="110,180" width="8" x="316" y="96"/>
       <circ-port height="10" pin="460,470" width="10" x="205" y="45"/>
-      <circ-port height="8" pin="110,80" width="8" x="46" y="66"/>
       <polyline fill="none" points="50,84 56,80" stroke="#000000"/>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="70" y="113">HL</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="95" y="113">AI AO</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="125" y="113">EO SU</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="154" y="113">BI BO</text>
       <circ-port height="8" pin="110,240" width="8" x="46" y="76"/>
-      <circ-port height="8" pin="110,140" width="8" x="316" y="76"/>
       <circ-port height="10" pin="400,470" width="10" x="175" y="45"/>
-      <circ-port height="8" pin="110,210" width="8" x="46" y="86"/>
       <circ-port height="8" pin="110,120" width="8" x="316" y="66"/>
-      <circ-port height="10" pin="480,470" width="10" x="215" y="45"/>
       <circ-port height="8" pin="110,60" width="8" x="46" y="56"/>
-      <circ-port height="10" pin="380,470" width="10" x="165" y="45"/>
       <circ-port height="10" pin="360,470" width="10" x="155" y="45"/>
-      <circ-port height="8" pin="110,100" width="8" x="316" y="56"/>
       <circ-port height="8" pin="110,160" width="8" x="316" y="86"/>
-      <circ-port height="10" pin="340,470" width="10" x="145" y="45"/>
       <circ-port height="10" pin="420,470" width="10" x="185" y="45"/>
+      <circ-port height="10" pin="340,470" width="10" x="145" y="45"/>
+      <circ-port height="8" pin="110,100" width="8" x="316" y="56"/>
+      <circ-port height="10" pin="380,470" width="10" x="165" y="45"/>
+      <circ-port height="10" pin="480,470" width="10" x="215" y="45"/>
+      <circ-port height="8" pin="110,210" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="110,140" width="8" x="316" y="76"/>
+      <circ-port height="8" pin="110,80" width="8" x="46" y="66"/>
+      <circ-port height="8" pin="110,180" width="8" x="316" y="96"/>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="180" y="113">MI</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="113">RW RR</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="235" y="113">II  IR</text>
@@ -7253,11 +7253,12 @@ c40 5800 10 0 104 68 2001 10
 42 10 0 0 104 68 10c 140
 42 10 0 0 104 68 10c 140
 42 10 0 0 104 68 10c 140
-42 10 104 68 10c 42 10 104
-68 10c 42 10 104 68 10c 140
-42 10 104 68 10c 140 42 10
-104 68 10c 42 10 104 68 10c
-42 10 18*0 104 68 10c 140 42
+42 10 10*0 104 68 10c 42 10
+11*0 104 68 10c 42 10 11*0 104
+68 10c 140 42 10 10*0 104 68
+10c 140 42 10 18*0 104 68 10c
+42 10 0 0 0 104 68 10c
+42 10 19*0 104 68 10c 140 42
 10 0 0 104 68 10c 140 42
 10
 </a>
@@ -7458,12 +7459,12 @@ c40 5800 10 0 104 68 2001 10
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="circuitvhdlpath" val=""/>
     <appear>
-      <circ-port height="8" pin="140,140" width="8" x="86" y="26"/>
       <circ-port height="8" pin="140,80" width="8" x="116" y="26"/>
-      <circ-port height="8" pin="140,120" width="8" x="96" y="26"/>
       <circ-port height="8" pin="140,180" width="8" x="66" y="26"/>
-      <circ-port height="8" pin="140,160" width="8" x="76" y="26"/>
       <circ-port height="8" pin="140,100" width="8" x="106" y="26"/>
+      <circ-port height="8" pin="140,160" width="8" x="76" y="26"/>
+      <circ-port height="8" pin="140,120" width="8" x="96" y="26"/>
+      <circ-port height="8" pin="140,140" width="8" x="86" y="26"/>
       <circ-port height="8" pin="140,60" width="8" x="126" y="26"/>
       <circ-port height="8" pin="140,200" width="8" x="56" y="26"/>
       <rect fill="none" height="100" stroke="#000000" stroke-width="2" width="130" x="30" y="30"/>
@@ -7795,10 +7796,10 @@ c40 5800 10 0 104 68 2001 10
     <appear>
       <rect fill="none" height="50" stroke="#000000" stroke-width="2" width="90" x="60" y="50"/>
       <polyline fill="none" points="60,56 66,60" stroke="#000000"/>
-      <circ-port height="8" pin="100,80" width="8" x="56" y="66"/>
       <circ-port height="10" pin="630,280" width="10" x="145" y="55"/>
-      <circ-port height="8" pin="440,70" width="8" x="56" y="56"/>
       <circ-port height="10" pin="630,260" width="10" x="145" y="65"/>
+      <circ-port height="8" pin="440,70" width="8" x="56" y="56"/>
+      <circ-port height="8" pin="100,80" width="8" x="56" y="66"/>
       <polyline fill="none" points="60,64 66,60" stroke="#000000"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="106" y="70">Program</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="107" y="85">loader</text>

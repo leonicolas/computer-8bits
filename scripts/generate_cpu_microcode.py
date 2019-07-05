@@ -88,19 +88,19 @@ instruction_set = [
         'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
     {   'name': 'jpz_addr',
-        'op_code': 0x10, 'cf': [0, 1], 'zf': 1,
+        'op_code': 0x12, 'cf': [0, 1], 'zf': 1,
         'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
     },
     {   'name': 'jpz_paddr',
-        'op_code': 0x11, 'cf': [0, 1], 'zf': 1,
+        'op_code': 0x13, 'cf': [0, 1], 'zf': 1,
         'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
     {   'name': 'jpc_addr',
-        'op_code': 0x12, 'cf': 1, 'zf': [0, 1],
+        'op_code': 0x14, 'cf': 1, 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
     },
     {   'name': 'jpc_paddr',
-        'op_code': 0x13, 'cf': 1, 'zf': [0, 1],
+        'op_code': 0x15, 'cf': 1, 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
 ]
