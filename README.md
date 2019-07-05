@@ -143,9 +143,6 @@ The script [generate_cpu_microcode.py](https://github.com/leonicolas/computer-8b
 
 | Instruction | OpCode | Description |
 | ----------- |:------: | ---------------- |
-| FETCH INSTR |   --   | Fetches the next instruction putting it in the IR. This instruction is executed before each instruction execution. |
-| FIN INST    |   --   | Finalizes the instruction execution resetting the instruction decoder step. This instruction is executed after each instruction execution.|
-|             |        |  |
 | NOP         |  0x00  | No operation. Fetches the next operation. |
 | HALT        |  0x01  | Stops the computer clock. |
 | LDA NUM     |  0x02  | Loads register A with the given value. |
