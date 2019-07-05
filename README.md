@@ -18,8 +18,9 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
   - [The program counter (PC)](#The-program-counter-PC)
   - [The instruction decoder](#The-instruction-decoder)
   - [The microcode / instruction set](#The-microcode--instruction-set)
+    - [Instructions:](#Instructions)
   - [The 8-bits to 7-segments decoder](#The-8-bits-to-7-segments-decoder)
- 
+
 ## Project goal
 
 This project goal is to build a basic 8-bits computer with a functional 8-bits processor using a digital circuit simulator (LogiSim).
@@ -66,7 +67,7 @@ For this first processor version, I will only implement the sum and subtraction 
 
 The address decoder is responsible for decode one binary address to a binary signal (1-bit). For each address the circuit will activated one different output.
 
-This circuit decodes each of the 4-bits address to a different output signal in a total of 16 outputs. 
+This circuit decodes each of the 4-bits address to a different output signal in a total of 16 outputs.
 
 ![The 4-bits address decoder](images/address_decoder_4-bits.png)
 
@@ -76,7 +77,7 @@ A register is a processor piece that is responsible for storing information. In 
 
 The register works using a D flip-flop for store a bit. Each 8-bits register uses 8 D flip-flop for store a byte (8-bits).
 
-This processor will use 6 registers: 
+This processor will use 6 registers:
 
 1) Program counter register (PC)
 2) Register A connected to the ALU
@@ -97,9 +98,9 @@ The RAM (Random Access Memory) is responsible for store values with 8-bits each 
 
 ### The DRAM and SRAM
 
-There are different types of RAM. Dynamic RAM (DRAM) and Static RAM (SRAM) are usually found in our computers. 
+There are different types of RAM. Dynamic RAM (DRAM) and Static RAM (SRAM) are usually found in our computers.
 
-DRAM is a memory based on capacitors, with less components compared with the SRAM memory, but with the necessity to refresh the capacitors many times per second for avoid data loss. 
+DRAM is a memory based on capacitors, with less components compared with the SRAM memory, but with the necessity to refresh the capacitors many times per second for avoid data loss.
 
 SRAM is based on D flip-flop registers generating a more complex circuit to store a bit, but with no refresh circuits.
 
@@ -136,7 +137,39 @@ This circuit is responsible for fetching instructions from the RAM, decoding it 
 
 The *instruction set* is the basic list of instructions provided by the processor telling it what it needs to execute. This processor uses CISC (Complex Instruction Set Computers) instructions instead the more simple RISC (Reduced Instruction Set Computer) instructions.
 
-I didn't finished yet the processor instruction set but you can follow the creation process through the spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0).
+The script [generate_cpu_microcode.py](https://github.com/leonicolas/computer-8bits/blob/master/scripts/generate_cpu_microcode.py) generates the ROM content to be load in the instruction decoder circuit.
+
+### Instructions:
+
+| Instruction | OpCode | Description |
+| ----------- |:------: | ---------------- |
+| FETCH INSTR |   --   | Fetches the next instruction putting it in the IR. This instruction is executed before each instruction execution. |
+| FIN INST    |   --   | Finalizes the instruction execution resetting the instruction decoder step. This instruction is executed after each instruction execution.|
+|             |        |  |
+| NOP         |  0x00  | No operation. Fetches the next operation. |
+| HALT        |  0x01  | Stops the computer clock. |
+| LDA NUM     |  0x02  | Loads register A with the given value. |
+| LDA [ADDR]  |  0x03  | Loads register A with the value stored in the given memory address. |
+| STA [ADDR]  |  0x04  | Stores the register A value in the given memory address. |
+| LDB NUM     |  0x05  | Loads register B with the given value. |
+| LDB [ADDR]  |  0x06  | Loads register B with the value stored in the given memory address. |
+| STB [ADDR]  |  0x07  | Stores the register B value in the given memory address. |
+| ADD NUM     |  0x08  | Adds the given value with the value stored in register A and stores the sum result in register A. The given number will be stored in register B. |
+| ADD [ADDR]  |  0x09  | Adds the value stored in the given memory address with the value stored in register A. Stores the sum result in register A. |
+| SUB NUM     |  0x0A  | Subtracts the given value with the value stored in register A and stores the subtraction result in register A. The given number will be stored in register B. |
+| SUB [ADDR]  |  0x0B  | Subtracts the value stored in the given memory address with the value stored in register A. Stores the subtraction result in register A. |
+| OUTA        |  0x0C  | Sets the Output register with the register A value. |
+| OUTB        |  0x0D  | Sets the Output register with the register B value. |
+| OUT NUM     |  0x0E  | Sets the Output register with the given value. |
+| OUT [ADDR]  |  0x0F  | Sets the Output register with the value stored in the given memory address. |
+| JP ADDR     |  0x10  | Jumps to the given address. |
+| JP [ADDR]   |  0x11  | Jumps to the address stored in the given memory address. |
+| JPZ ADDR    |  0x12  | Jumps to the given address if the zero flag is 1. |
+| JPZ [ADDR]  |  0x13  | Jumps to the address stored in the given memory address if the zero flag is 1. |
+| JPC ADDR    |  0x14  | Jumps to the given address if the carry flag is 1. |
+| JPC [ADDR]  |  0x15  | Jumps to the address stored in the given memory address if the carry flag is 1. |
+
+The spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0) shows the instructions steps and control flags.
 
 ## The 8-bits to 7-segments decoder
 
