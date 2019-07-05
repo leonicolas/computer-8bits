@@ -15,65 +15,93 @@ fin_inst = [0x0010]
 # cf = carry flag.
 # zf = zero flag.
 instruction_set = [
-    {   'name': 'halt',
+    {   'name': 'nop',
         'op_code': 0x00, 'cf': [0, 1], 'zf': [0, 1],
+        'flags': fetch + fin_inst
+    },
+    {   'name': 'halt',
+        'op_code': 0x01, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x8000 ] + fin_inst
     },
     {   'name': 'lda_num',
-        'op_code': 0x01, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x02, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x4040 ] + fin_inst
     },
-    {   'name': 'lda_addr',
-        'op_code': 0x02, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'lda_paddr',
+        'op_code': 0x03, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x4040 ] + fin_inst
     },
-    {   'name': 'sta_addr',
-        'op_code': 0x03, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'sta_paddr',
+        'op_code': 0x04, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x2080 ] + fin_inst
     },
     {   'name': 'ldb_num',
-        'op_code': 0x04, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x05, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0440 ] + fin_inst
     },
-    {   'name': 'ldb_addr',
-        'op_code': 0x05, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'ldb_paddr',
+        'op_code': 0x06, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0440 ] + fin_inst
     },
-    {   'name': 'stb_addr',
-        'op_code': 0x06, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'stb_paddr',
+        'op_code': 0x07, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0280 ] + fin_inst
     },
     {   'name': 'add_num',
-        'op_code': 0x07, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x08, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0440, 0x5000 ] + fin_inst
     },
-    {   'name': 'add_addr',
-        'op_code': 0x08, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'add_paddr',
+        'op_code': 0x09, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0440, 0x5000 ] + fin_inst
     },
     {   'name': 'sub_num',
-        'op_code': 0x09, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x0A, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0C40, 0x5800 ] + fin_inst
     },
-    {   'name': 'sub_addr',
-        'op_code': 0x0A, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'sub_paddr',
+        'op_code': 0x0B, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0C40, 0x5800 ] + fin_inst
     },
     {   'name': 'outa',
-        'op_code': 0x0B, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x0C, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x2001 ] + fin_inst
     },
     {   'name': 'outb',
-        'op_code': 0x0C, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x0D, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x0201 ] + fin_inst
     },
     {   'name': 'out_num',
-        'op_code': 0x0D, 'cf': [0, 1], 'zf': [0, 1],
+        'op_code': 0x0E, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0041 ] + fin_inst
     },
-    {   'name': 'out_addr',
-        'op_code': 0x0E, 'cf': [0, 1], 'zf': [0, 1],
+    {   'name': 'out_paddr',
+        'op_code': 0x0F, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0041 ] + fin_inst
+    },
+    {   'name': 'jp_addr',
+        'op_code': 0x10, 'cf': [0, 1], 'zf': [0, 1],
+        'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
+    },
+    {   'name': 'jp_paddr',
+        'op_code': 0x11, 'cf': [0, 1], 'zf': [0, 1],
+        'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
+    },
+    {   'name': 'jpz_addr',
+        'op_code': 0x10, 'cf': [0, 1], 'zf': 1,
+        'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
+    },
+    {   'name': 'jpz_paddr',
+        'op_code': 0x11, 'cf': [0, 1], 'zf': 1,
+        'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
+    },
+    {   'name': 'jpc_addr',
+        'op_code': 0x12, 'cf': 1, 'zf': [0, 1],
+        'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
+    },
+    {   'name': 'jpc_paddr',
+        'op_code': 0x13, 'cf': 1, 'zf': [0, 1],
+        'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
 ]
 
@@ -135,7 +163,7 @@ def generate_microcode(fetch, instruction_set):
     return microcode
 
 # Fills the microcode missing addresses with NOP (no operation)
-def fill_microcode_addresses(microcode):
+def fill_microcode_paddresses(microcode):
     address = 0
     filled_microcode = list()
 
@@ -166,7 +194,7 @@ file_name = sys.argv[2 if arguments_num == 3 else 1]
 
 # Generates the codes table.
 microcode = generate_microcode(fetch, instruction_set)
-microcode = fill_microcode_addresses(microcode)
+microcode = fill_microcode_paddresses(microcode)
 if verbose:
     print_microcode(microcode)
 
