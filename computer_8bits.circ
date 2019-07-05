@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project source="2.15.0" version="1.0">
-  This file is intended to be loaded by Logisim-evolution (https://github.com/reds-heig/logisim-evolution).
-
-  <lib desc="#Wiring" name="0"/>
+This file is intended to be loaded by Logisim-evolution (https://github.com/reds-heig/logisim-evolution).
+<lib desc="#Wiring" name="0"/>
   <lib desc="#Gates" name="1"/>
   <lib desc="#Plexers" name="2">
     <tool name="Multiplexer">
@@ -157,6 +156,7 @@ end TCL_Generic;
     <wire from="(20,30)" to="(1200,30)"/>
     <wire from="(450,560)" to="(470,560)"/>
     <wire from="(470,580)" to="(490,580)"/>
+    <wire from="(930,390)" to="(960,390)"/>
     <wire from="(1020,280)" to="(1020,440)"/>
     <wire from="(550,390)" to="(550,450)"/>
     <wire from="(1170,240)" to="(1170,340)"/>
@@ -169,6 +169,7 @@ end TCL_Generic;
     <wire from="(820,240)" to="(820,440)"/>
     <wire from="(1200,370)" to="(1200,390)"/>
     <wire from="(1310,320)" to="(1310,340)"/>
+    <wire from="(960,320)" to="(960,390)"/>
     <wire from="(1000,560)" to="(1060,560)"/>
     <wire from="(310,280)" to="(310,300)"/>
     <wire from="(970,520)" to="(1140,520)"/>
@@ -315,6 +316,7 @@ end TCL_Generic;
     <wire from="(1020,440)" to="(1100,440)"/>
     <wire from="(1010,430)" to="(1090,430)"/>
     <wire from="(1000,420)" to="(1080,420)"/>
+    <wire from="(870,320)" to="(920,320)"/>
     <wire from="(800,260)" to="(800,460)"/>
     <wire from="(780,230)" to="(830,230)"/>
     <wire from="(810,250)" to="(870,250)"/>
@@ -457,6 +459,7 @@ end TCL_Generic;
     <wire from="(850,210)" to="(870,210)"/>
     <wire from="(510,410)" to="(600,410)"/>
     <wire from="(500,400)" to="(590,400)"/>
+    <wire from="(870,390)" to="(890,390)"/>
     <wire from="(730,300)" to="(730,340)"/>
     <wire from="(80,90)" to="(750,90)"/>
     <wire from="(260,260)" to="(280,260)"/>
@@ -622,6 +625,7 @@ end TCL_Generic;
     <wire from="(590,380)" to="(770,380)"/>
     <wire from="(950,510)" to="(1070,510)"/>
     <wire from="(130,650)" to="(250,650)"/>
+    <wire from="(870,320)" to="(870,390)"/>
     <wire from="(300,520)" to="(300,530)"/>
     <wire from="(410,240)" to="(410,440)"/>
     <wire from="(80,90)" to="(80,680)"/>
@@ -854,13 +858,15 @@ end TCL_Generic;
     </comp>
     <comp lib="4" loc="(1210,510)" name="ROM">
       <a name="contents">addr/data: 8 8
-2 1 c 8 1 11 0 b
-0 2 6*0 88 39*0 4 68 6*0
-4 68 1c 5*0 4 68 1c 5*0
-4 68 1c 5*0 4 68 1c 5*0
-4 68 c 50 4*0 4 68 c
-50 4*0 4 68 c 50 4*0 4
-68 c 50
+2 3 4 1f 2 2 4 1d
+3 1f 9 1f 4 1c 3 1e
+8 1 4 1e b 1d 12 1a
+10 8 f 1f 1 27*0 4 68
+6*0 4 68 1c 5*0 4 68 1c
+5*0 4 68 1c 5*0 4 68 1c
+5*0 4 68 c 50 4*0 4 68
+c 50 4*0 4 68 c 50 4*0
+4 68 c 50
 </a>
     </comp>
     <comp loc="(960,200)" name="Register_8_bits"/>
@@ -889,6 +895,18 @@ end TCL_Generic;
     </comp>
     <comp lib="0" loc="(1010,150)" name="Splitter">
       <a name="facing" val="south"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="5" loc="(930,390)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(890,390)" name="Hex Digit Display"/>
+    <comp lib="0" loc="(960,320)" name="Splitter">
+      <a name="facing" val="north"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="0" loc="(920,320)" name="Splitter">
+      <a name="facing" val="north"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
     </comp>
@@ -1394,6 +1412,8 @@ end TCL_Generic;
     <appear>
       <rect fill="none" height="90" stroke="#000000" stroke-width="2" width="130" x="50" y="20"/>
       <text font-family="SansSerif" font-size="8" text-anchor="middle" x="110" y="101">ALU 8-bits</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="80" y="33">CF</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="90" y="33">ZF</text>
       <circ-port height="10" pin="810,120" width="10" x="85" y="105"/>
       <circ-port height="10" pin="810,140" width="10" x="95" y="105"/>
       <circ-port height="10" pin="810,160" width="10" x="105" y="105"/>
@@ -1690,7 +1710,7 @@ end TCL_Generic;
     <comp lib="0" loc="(470,60)" name="Pin">
       <a name="facing" val="south"/>
       <a name="output" val="true"/>
-      <a name="label" val="CO"/>
+      <a name="label" val="CF"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(270,60)" name="Pin">
@@ -2886,12 +2906,12 @@ end TCL_Generic;
     <wire from="(160,550)" to="(250,550)"/>
     <wire from="(520,250)" to="(540,250)"/>
     <wire from="(470,750)" to="(500,750)"/>
-    <wire from="(200,690)" to="(200,790)"/>
-    <wire from="(240,570)" to="(240,670)"/>
-    <wire from="(240,370)" to="(240,470)"/>
-    <wire from="(240,170)" to="(240,270)"/>
     <wire from="(200,290)" to="(200,390)"/>
     <wire from="(200,490)" to="(200,590)"/>
+    <wire from="(240,170)" to="(240,270)"/>
+    <wire from="(240,370)" to="(240,470)"/>
+    <wire from="(200,690)" to="(200,790)"/>
+    <wire from="(240,570)" to="(240,670)"/>
     <wire from="(550,190)" to="(550,350)"/>
     <wire from="(170,450)" to="(250,450)"/>
     <wire from="(310,350)" to="(390,350)"/>
@@ -6824,45 +6844,45 @@ end TCL_Generic;
     <a name="circuitvhdlpath" val=""/>
     <appear>
       <rect fill="none" height="70" stroke="#000000" stroke-width="2" width="270" x="50" y="50"/>
-      <text fill="#ffffff" font-family="Courier 10 Pitch" font-size="14" font-weight="bold" text-anchor="middle" x="160" y="564">Instruction_decoder</text>
-      <circ-port height="10" pin="440,470" width="10" x="195" y="45"/>
-      <circ-port height="10" pin="460,470" width="10" x="205" y="45"/>
+      <text fill="#ffffff" font-family="Dialog" font-size="14" font-weight="bold" text-anchor="middle" x="160" y="564">Instruction_decoder</text>
       <polyline fill="none" points="50,84 56,80" stroke="#000000"/>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="70" y="113">HL</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="95" y="113">AI AO</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="125" y="113">EO SU</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="154" y="113">BI BO</text>
-      <circ-port height="8" pin="110,240" width="8" x="46" y="76"/>
-      <circ-port height="10" pin="400,470" width="10" x="175" y="45"/>
       <circ-port height="8" pin="110,120" width="8" x="316" y="66"/>
-      <circ-port height="8" pin="110,60" width="8" x="46" y="56"/>
-      <circ-port height="10" pin="360,470" width="10" x="155" y="45"/>
-      <circ-port height="8" pin="110,160" width="8" x="316" y="86"/>
-      <circ-port height="10" pin="420,470" width="10" x="185" y="45"/>
-      <circ-port height="10" pin="340,470" width="10" x="145" y="45"/>
-      <circ-port height="8" pin="110,100" width="8" x="316" y="56"/>
-      <circ-port height="10" pin="380,470" width="10" x="165" y="45"/>
       <circ-port height="10" pin="480,470" width="10" x="215" y="45"/>
       <circ-port height="8" pin="110,210" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="110,60" width="8" x="46" y="56"/>
+      <circ-port height="10" pin="400,470" width="10" x="175" y="45"/>
+      <circ-port height="10" pin="380,470" width="10" x="165" y="45"/>
       <circ-port height="8" pin="110,140" width="8" x="316" y="76"/>
+      <circ-port height="10" pin="360,470" width="10" x="155" y="45"/>
+      <circ-port height="10" pin="440,470" width="10" x="195" y="45"/>
+      <circ-port height="8" pin="110,240" width="8" x="46" y="76"/>
+      <circ-port height="8" pin="110,100" width="8" x="316" y="56"/>
       <circ-port height="8" pin="110,80" width="8" x="46" y="66"/>
+      <circ-port height="8" pin="110,160" width="8" x="316" y="86"/>
+      <circ-port height="10" pin="460,470" width="10" x="205" y="45"/>
+      <circ-port height="10" pin="340,470" width="10" x="145" y="45"/>
       <circ-port height="8" pin="110,180" width="8" x="316" y="96"/>
+      <circ-port height="10" pin="420,470" width="10" x="185" y="45"/>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="180" y="113">MI</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="113">RW RR</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="235" y="113">II  IR</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="270" y="113">CE CO JP</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="300" y="113">OI</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="184" y="63">Steps</text>
-      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="63">AF</text>
-      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="73">O0</text>
-      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="83">O1</text>
-      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="93">O2</text>
-      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="103">O3</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="63">O0</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="73">O1</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="83">O2</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="93">O3</text>
       <polyline fill="none" points="50,76 56,80" stroke="#000000"/>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="63" y="63">ZF</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="64" y="103">PRG</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="63" y="73">CF</text>
       <text font-family="SansSerif" font-size="7" text-anchor="middle" x="64" y="93">CLR</text>
+      <text font-family="SansSerif" font-size="7" text-anchor="middle" x="309" y="103">O4</text>
       <circ-port height="8" pin="110,30" width="8" x="46" y="96"/>
       <circ-port height="10" pin="970,60" width="10" x="295" y="115"/>
       <circ-port height="10" pin="970,110" width="10" x="275" y="115"/>
@@ -7253,14 +7273,18 @@ c40 5800 10 0 104 68 2001 10
 42 10 0 0 104 68 10c 140
 42 10 0 0 104 68 10c 140
 42 10 0 0 104 68 10c 140
-42 10 10*0 104 68 10c 42 10
-11*0 104 68 10c 42 10 11*0 104
-68 10c 140 42 10 10*0 104 68
-10c 140 42 10 18*0 104 68 10c
-42 10 0 0 0 104 68 10c
-42 10 19*0 104 68 10c 140 42
-10 0 0 104 68 10c 140 42
-10
+42 10 0 0 104 68 10 13*0
+104 68 10 104 68 10c 42 10
+104 68 10c 42 10 0 0 0
+104 68 10 13*0 104 68 10 104
+68 10c 140 42 10 104 68 10c
+140 42 10 0 104 68 10 5*0
+104 68 10 5*0 104 68 10c 42
+10 0 0 0 104 68 10c 42
+10 0 0 0 104 68 10 5*0
+104 68 10 5*0 104 68 10c 140
+42 10 0 0 104 68 10c 140
+42 10
 </a>
     </comp>
     <comp lib="0" loc="(100,270)" name="Constant"/>
@@ -7459,12 +7483,12 @@ c40 5800 10 0 104 68 2001 10
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="circuitvhdlpath" val=""/>
     <appear>
-      <circ-port height="8" pin="140,80" width="8" x="116" y="26"/>
-      <circ-port height="8" pin="140,180" width="8" x="66" y="26"/>
-      <circ-port height="8" pin="140,100" width="8" x="106" y="26"/>
-      <circ-port height="8" pin="140,160" width="8" x="76" y="26"/>
       <circ-port height="8" pin="140,120" width="8" x="96" y="26"/>
+      <circ-port height="8" pin="140,100" width="8" x="106" y="26"/>
+      <circ-port height="8" pin="140,180" width="8" x="66" y="26"/>
       <circ-port height="8" pin="140,140" width="8" x="86" y="26"/>
+      <circ-port height="8" pin="140,80" width="8" x="116" y="26"/>
+      <circ-port height="8" pin="140,160" width="8" x="76" y="26"/>
       <circ-port height="8" pin="140,60" width="8" x="126" y="26"/>
       <circ-port height="8" pin="140,200" width="8" x="56" y="26"/>
       <rect fill="none" height="100" stroke="#000000" stroke-width="2" width="130" x="30" y="30"/>

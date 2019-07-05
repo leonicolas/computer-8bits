@@ -87,19 +87,35 @@ instruction_set = [
         'op_code': 0x11, 'cf': [0, 1], 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
-    {   'name': 'jpz_addr',
+    {   'name': 'jpz_addr_zf0',
+        'op_code': 0x12, 'cf': [0, 1], 'zf': 0,
+        'flags': fetch + fin_inst
+    },
+    {   'name': 'jpz_addr_zf1',
         'op_code': 0x12, 'cf': [0, 1], 'zf': 1,
         'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
     },
-    {   'name': 'jpz_paddr',
+    {   'name': 'jpz_paddr_zf0',
+        'op_code': 0x13, 'cf': [0, 1], 'zf': 0,
+        'flags': fetch + fin_inst
+    },
+    {   'name': 'jpz_paddr_zf1',
         'op_code': 0x13, 'cf': [0, 1], 'zf': 1,
         'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
-    {   'name': 'jpc_addr',
+    {   'name': 'jpc_addr_cf0',
+        'op_code': 0x14, 'cf': 0, 'zf': [0, 1],
+        'flags': fetch + fin_inst
+    },
+    {   'name': 'jpc_addr_cf1',
         'op_code': 0x14, 'cf': 1, 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0042 ] + fin_inst
     },
-    {   'name': 'jpc_paddr',
+    {   'name': 'jpc_paddr_cf0',
+        'op_code': 0x15, 'cf': 0, 'zf': [0, 1],
+        'flags': fetch + fin_inst
+    },
+    {   'name': 'jpc_paddr_cf1',
         'op_code': 0x15, 'cf': 1, 'zf': [0, 1],
         'flags': fetch + [ 0x010C, 0x0140, 0x0042 ] + fin_inst
     },
@@ -117,7 +133,7 @@ def print_microcode(microcode):
         zf = (instruction['address'] & 0x08) >> 3
         step = instruction['address'] & 0x07
         print("{} - 0x{:04x} - {:05b} {:01b} {:01b} {:03b} - {:04x}".format(
-            instruction['name'].ljust(10),
+            instruction['name'].ljust(13),
             instruction['address'],
             op_code, cf, zf, step,
             instruction['flag']))
