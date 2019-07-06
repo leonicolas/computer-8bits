@@ -6,6 +6,8 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
   - [Project goal](#Project-goal)
   - [Acknowledgments](#Acknowledgments)
   - [The current processor version](#The-current-processor-version)
+    - [Program examples](#Program-examples)
+      - [Multiplication](#Multiplication)
   - [The BUS](#The-BUS)
   - [The full adder](#The-full-adder)
   - [The 8-bits Arithmetic and Logic Unit (ALU)](#The-8-bits-Arithmetic-and-Logic-Unit-ALU)
@@ -18,7 +20,6 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
   - [The program counter (PC)](#The-program-counter-PC)
   - [The instruction decoder](#The-instruction-decoder)
   - [The microcode / instruction set](#The-microcode--instruction-set)
-    - [Instructions:](#Instructions)
   - [The 8-bits to 7-segments decoder](#The-8-bits-to-7-segments-decoder)
 
 ## Project goal
@@ -38,6 +39,82 @@ This is the current processor circuit version. It's not complete yet, but it's q
 ![The processor](images/processor.png)
 
 Is there anything missing? Yes, I know, the ~~program counter (PC)~~, ~~instructions decoder~~, the ~~RAM memory~~, etc. I'll put these modules into the processor in the next versions.
+
+`Instructions`
+
+| Instruction | OpCode | Description |
+| ----------- |:------: | ---------------- |
+| NOP         |  0x00  | No operation. Fetches the next operation. |
+| HALT        |  0x01  | Stops the computer clock. |
+| LDA NUM     |  0x02  | Loads register A with the given value. |
+| LDA [ADDR]  |  0x03  | Loads register A with the value stored in the given memory address. |
+| STA [ADDR]  |  0x04  | Stores the register A value in the given memory address. |
+| LDB NUM     |  0x05  | Loads register B with the given value. |
+| LDB [ADDR]  |  0x06  | Loads register B with the value stored in the given memory address. |
+| STB [ADDR]  |  0x07  | Stores the register B value in the given memory address. |
+| ADD NUM     |  0x08  | Adds the given value with the value stored in register A and stores the sum result in register A. The given number will be stored in register B. |
+| ADD [ADDR]  |  0x09  | Adds the value stored in the given memory address with the value stored in register A. Stores the sum result in register A. |
+| SUB NUM     |  0x0A  | Subtracts the given value with the value stored in register A and stores the subtraction result in register A. The given number will be stored in register B. |
+| SUB [ADDR]  |  0x0B  | Subtracts the value stored in the given memory address with the value stored in register A. Stores the subtraction result in register A. |
+| OUTA        |  0x0C  | Sets the Output register with the register A value. |
+| OUTB        |  0x0D  | Sets the Output register with the register B value. |
+| OUT NUM     |  0x0E  | Sets the Output register with the given value. |
+| OUT [ADDR]  |  0x0F  | Sets the Output register with the value stored in the given memory address. |
+| JP [ADDR]   |  0x10  | Jumps to the given address. |
+| JPZ [ADDR]  |  0x11  | Jumps to the given address if the zero flag is 1. |
+| JPC [ADDR]  |  0x12  | Jumps to the given address if the carry flag is 1. |
+
+The spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0) shows the instructions steps and control flags.
+
+### Program examples
+
+#### Multiplication
+
+```nasm
+INITIALIZATION:
+0x00  LDA 0             # Initializes the result loading it in register A.
+0x02  STA [RESULT]      # Stores register A in the result memory address.
+
+0x04  LDA 4             # Initializes the factor loading it in register A.
+0x06  STA [FACTOR]      # Stores register A in the factor memory address.
+0x08  OUTA              # Output the factor.
+
+0x09  LDA 3             # Initializes the multiplicand loading it in register A.
+0x0B  STA [MULT]        # Stores register A in the multiplicand memory address.
+0x0D  OUTA              # Output the multiplicand.
+0x0E  JPZ [END]         # If multiplicand equals zero goes to the end.
+
+START:                  # 0x10
+0x10  LDA [RESULT]      # Loads the factor in register A.
+0x12  ADD [FACTOR]      # Adds the factor.
+0x14  STA [RESULT]      # Stores the result of adition in result.
+
+0x16  LDA [MULT]        # Loads the multiplicand in register A.
+0x18  SUB 1             # Decrement the multiplicand.
+0x1A  JPZ [END]         # If multiplicand equals zero goes to the end.
+0x1C  STA [MULT]        # Stores the multiplicand.
+
+0x1E  JP  [START]       # Jumps to start.
+
+END:                    # 0x20
+0x20  OUT [RESULT]      # Output the result.
+0x22  HALT              # Halts the program.
+
+# VARIABLES:
+# 0x23  FACTOR
+# 0x24  MULT
+# 0X25  RESULT
+```
+
+Binary representation:
+
+```nasm
+02 00 04 25 02 04 04 23
+0C 02 03 04 24 0C 11 20
+03 25 09 23 04 25 03 24
+0A 01 11 20 04 24 10 10
+0F 25 01
+```
 
 ## The BUS
 
@@ -138,35 +215,6 @@ This circuit is responsible for fetching instructions from the RAM, decoding it 
 The *instruction set* is the basic list of instructions provided by the processor telling it what it needs to execute. This processor uses CISC (Complex Instruction Set Computers) instructions instead the more simple RISC (Reduced Instruction Set Computer) instructions.
 
 The script [generate_cpu_microcode.py](https://github.com/leonicolas/computer-8bits/blob/master/scripts/generate_cpu_microcode.py) generates the ROM content to be load in the instruction decoder circuit.
-
-### Instructions:
-
-| Instruction | OpCode | Description |
-| ----------- |:------: | ---------------- |
-| NOP         |  0x00  | No operation. Fetches the next operation. |
-| HALT        |  0x01  | Stops the computer clock. |
-| LDA NUM     |  0x02  | Loads register A with the given value. |
-| LDA [ADDR]  |  0x03  | Loads register A with the value stored in the given memory address. |
-| STA [ADDR]  |  0x04  | Stores the register A value in the given memory address. |
-| LDB NUM     |  0x05  | Loads register B with the given value. |
-| LDB [ADDR]  |  0x06  | Loads register B with the value stored in the given memory address. |
-| STB [ADDR]  |  0x07  | Stores the register B value in the given memory address. |
-| ADD NUM     |  0x08  | Adds the given value with the value stored in register A and stores the sum result in register A. The given number will be stored in register B. |
-| ADD [ADDR]  |  0x09  | Adds the value stored in the given memory address with the value stored in register A. Stores the sum result in register A. |
-| SUB NUM     |  0x0A  | Subtracts the given value with the value stored in register A and stores the subtraction result in register A. The given number will be stored in register B. |
-| SUB [ADDR]  |  0x0B  | Subtracts the value stored in the given memory address with the value stored in register A. Stores the subtraction result in register A. |
-| OUTA        |  0x0C  | Sets the Output register with the register A value. |
-| OUTB        |  0x0D  | Sets the Output register with the register B value. |
-| OUT NUM     |  0x0E  | Sets the Output register with the given value. |
-| OUT [ADDR]  |  0x0F  | Sets the Output register with the value stored in the given memory address. |
-| JP ADDR     |  0x10  | Jumps to the given address. |
-| JP [ADDR]   |  0x11  | Jumps to the address stored in the given memory address. |
-| JPZ ADDR    |  0x12  | Jumps to the given address if the zero flag is 1. |
-| JPZ [ADDR]  |  0x13  | Jumps to the address stored in the given memory address if the zero flag is 1. |
-| JPC ADDR    |  0x14  | Jumps to the given address if the carry flag is 1. |
-| JPC [ADDR]  |  0x15  | Jumps to the address stored in the given memory address if the carry flag is 1. |
-
-The spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0) shows the instructions steps and control flags.
 
 ## The 8-bits to 7-segments decoder
 
