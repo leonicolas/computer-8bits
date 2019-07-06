@@ -6,8 +6,10 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
   - [Project goal](#Project-goal)
   - [Acknowledgments](#Acknowledgments)
   - [The current processor version](#The-current-processor-version)
-    - [Program examples](#Program-examples)
-      - [Multiplication](#Multiplication)
+  - [The microcode / instruction set](#The-microcode--instruction-set)
+  - [Instructions](#Instructions)
+  - [Program examples](#Program-examples)
+    - [Multiplication](#Multiplication)
   - [The BUS](#The-BUS)
   - [The full adder](#The-full-adder)
   - [The 8-bits Arithmetic and Logic Unit (ALU)](#The-8-bits-Arithmetic-and-Logic-Unit-ALU)
@@ -19,7 +21,6 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
     - [The 256 bytes SRAM](#The-256-bytes-SRAM)
   - [The program counter (PC)](#The-program-counter-PC)
   - [The instruction decoder](#The-instruction-decoder)
-  - [The microcode / instruction set](#The-microcode--instruction-set)
   - [The 8-bits to 7-segments decoder](#The-8-bits-to-7-segments-decoder)
 
 ## Project goal
@@ -40,7 +41,13 @@ This is the current processor circuit version. It's not complete yet, but it's q
 
 Is there anything missing? Yes, I know, the ~~program counter (PC)~~, ~~instructions decoder~~, the ~~RAM memory~~, etc. I'll put these modules into the processor in the next versions.
 
-`Instructions`
+## The microcode / instruction set
+
+The *instruction set* is the basic list of instructions provided by the processor telling it what it needs to execute. This processor uses CISC (Complex Instruction Set Computers) instructions instead the more simple RISC (Reduced Instruction Set Computer) instructions.
+
+The script [generate_cpu_microcode.py](https://github.com/leonicolas/computer-8bits/blob/master/scripts/generate_cpu_microcode.py) generates the ROM content to be load in the instruction decoder circuit.
+
+## Instructions
 
 | Instruction | OpCode | Description |
 | ----------- |:------: | ---------------- |
@@ -66,9 +73,9 @@ Is there anything missing? Yes, I know, the ~~program counter (PC)~~, ~~instruct
 
 The spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8PanTtMlRC4RZEkOpCdoTKiEzFjZNxuiX3XXzDU/edit#gid=0) shows the instructions steps and control flags.
 
-### Program examples
+## Program examples
 
-#### Multiplication
+### Multiplication
 
 ```nasm
 INITIALIZATION:
@@ -209,12 +216,6 @@ The program counter is a special register responsible for storing the address of
 This circuit is responsible for fetching instructions from the RAM, decoding it and changing the control flags in order for the processor to execute the instructions. The [Instruction set](#The-microcode--instruction-set) describes all instructions the decoder knows and which flags are enabled for each step during the instruction execution.
 
 ![The Program counter](images/instruction_decoder.png)
-
-## The microcode / instruction set
-
-The *instruction set* is the basic list of instructions provided by the processor telling it what it needs to execute. This processor uses CISC (Complex Instruction Set Computers) instructions instead the more simple RISC (Reduced Instruction Set Computer) instructions.
-
-The script [generate_cpu_microcode.py](https://github.com/leonicolas/computer-8bits/blob/master/scripts/generate_cpu_microcode.py) generates the ROM content to be load in the instruction decoder circuit.
 
 ## The 8-bits to 7-segments decoder
 
