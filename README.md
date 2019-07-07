@@ -82,7 +82,7 @@ The spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8P
 ### How to load and run a program
 
 1. Write a program using the processor instructions.
-2. Convert it to binary and save it using the format like the [multiplication.bin](programs/multiplication.raw) file (I didn't finish yet the compiler development :grimacing:).
+2. Convert it to binary and save it using the format like the [multiplication.bin](programs/multiplication.raw) file (I didn't finish the compiler development yet :grimacing:).
 3. Open the processor_8-bits.circ using LogiSim Evolution simulator.
 4. Click with the mouse right button on the Program ROM and click on Load image...
 5. Choose you program raw file loading it in the Program ROM.
