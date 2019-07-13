@@ -11,6 +11,7 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
   - [Program examples](#Program-examples)
     - [How to load and run a program](#How-to-load-and-run-a-program)
     - [Multiplication](#Multiplication)
+    - [Fibonacci](#Fibonacci)
   - [Circuits](#Circuits)
     - [The BUS](#The-BUS)
     - [The full adder](#The-full-adder)
@@ -31,7 +32,9 @@ This project goal is to build a basic 8-bits computer with a functional 8-bits p
 
 For future versions I will expand the circuits modules and functionalities creating a more complex processor, but for now, I'm trying to keep the circuits as simple as possible.
 
-This processor project it's not focused on performance instead I priorized the simplicity to create circuits easy to understand.
+This processor project is not focused on performance, instead I prioritized the simplicity to create circuits easy to understand.
+
+`Note`: There are two processor versions. The first one committed on the `master` branch that uses the DRAM memory created by me with registers and logic ports and the second one committed on the `logisim-native-ram` branch using the Logisim memory RAM component.
 
 ## Acknowledgments
 
@@ -81,18 +84,32 @@ The spreadsheet [Instruction set](https://docs.google.com/spreadsheets/d/1Fneg8P
 
 ### How to load and run a program
 
+`Create your program:`
+
 1. Write a program using the processor instructions.
 2. Convert it to binary and save it using the format like the [multiplication.bin](programs/multiplication.raw) file (I didn't finish the compiler development yet :grimacing:).
 3. Open the processor_8-bits.circ using LogiSim Evolution simulator.
-4. Click with the mouse right button on the Program ROM and click on Load image...
-5. Choose you program raw file loading it in the Program ROM.
-6. Click on the ![The hand button](images/hand_button.png) button.
-7. Enable the programming mode clicking on ![The programming selector](images/programming_mode_selector.png)
-8. Using the `Simulate` menu start the clock selecting the `Ticks Enable` menu entry.
-9. Wait until all your program code is loaded to the RAM. You can track the program loading through the gray box shown inside the Program ROM.
-10. Disable the programming mode clicking on ![The programming selector](images/programming_mode_selector_on.png).
-11. Click on the ![The reset button](images/reset_button.png) button.
-12. Now watch the magic happening :stuck_out_tongue_winking_eye:.
+
+`Instructions for the master branch version:`
+
+1. Click with the mouse right button on the Program ROM and click on Load image...
+2. Choose you program raw file loading it in the Program ROM.
+3. Click on the ![The hand button](images/hand_button.png) button.
+4. Enable the programming mode clicking on ![The programming selector](images/programming_mode_selector.png)
+5. Using the `Simulate` menu start the clock selecting the `Ticks Enable` menu entry.
+6. Wait until all your program code is loaded to the RAM. You can track the program loading through the gray box shown inside the Program ROM.
+7. Disable the programming mode clicking on ![The programming selector](images/programming_mode_selector_on.png).
+8. Click on the ![The reset button](images/reset_button.png) button.
+9. Now watch the magic happening :stuck_out_tongue_winking_eye:.
+
+`Instructions for the logisim-native-ram branch version:`
+
+1. Click with the mouse right button on the RAM and click on Load image...
+2. Choose you program raw file loading it in the RAM.
+3. Click on the ![The hand button](images/hand_button.png) button.
+4. Click on the ![The reset button](images/reset_button.png) button.
+5. Using the `Simulate` menu start the clock selecting the `Ticks Enable` menu entry.
+6. Now watch the magic happening :stuck_out_tongue_winking_eye:.
 
 ### Multiplication
 
@@ -102,12 +119,12 @@ INITIALIZATION:
 0x02  STA [FACTOR]      # Stores register A in the factor memory address.
 0x04  OUTA              # Output the factor.
 
-0x05  LDA 3             # Initializes the multiplicand loading it in register A.
-0x07  STA [MULT]        # Stores register A in the multiplicand memory address.
-0x09  OUTA              # Output the multiplicand.
+0x05  LDA 0             # Initializes the result loading it in register A.
+0x07  STA [RESULT]      # Stores register A in the result memory address.
 
-0x0A  LDA 0             # Initializes the result loading it in register A.
-0x0C  STA [RESULT]      # Stores register A in the result memory address.
+0x09  LDA 3             # Initializes the multiplicand loading it in register A.
+0x0B  STA [MULT]        # Stores register A in the multiplicand memory address.
+0x0D  OUTA              # Output the multiplicand.
 
 START:                  # 0x0E
 0x0E  JPZ [END]         # If multiplicand equals zero goes to the end.
@@ -134,13 +151,39 @@ END:                    # 0x20
 
 Binary representation:
 
+[multiplication.raw](programs/multiplication.raw)
+
+### Fibonacci
+
+```nasm
+INIT:                   # 0x00
+0x00  LDA 0             # Initializes the number 1 loading it in register A.
+0x02  STA [NUM1]        # Stores register A in the number 1 memory address.
+0x04  OUT [NUM1]        # Output the number 1.
+
+0x06  LDA 1             # Initializes the number 2 loading it in register A.
+0x08  STA [NUM2]        # Stores register A in the number 2 memory address.
+
+START:                  # 0x0A
+0x0A  OUT [NUM2]        # Output the number 2.
+0x0C  LDA [NUM1]        # Loads the number 1 in register A.
+0x0E  ADD [NUM2]        # Adds the number 2.
+0x10  STB [NUM1]        # Stores number 2 in number 1.
+0x12  STA [NUM2]        # Stores the sum of number 1 and 2 in number 2.
+
+0x14  JPC [INIT]        # Jump on carry (restart).
+0x16  JP  [START]       # Jumps to start.
+
+# VARIABLES:
+# 0x18  NUM1
+# 0x19  NUM2
 ```
-02 04 04 23 0C 02 03 04
-24 0C 02 00 04 25 11 20
-03 25 09 23 04 25 03 24
-0A 01 11 20 04 24 10 10
-0F 25 01
-```
+
+Binary representation:
+
+[multiplication.raw](programs/fibonacci.raw)
+
+
 ## Circuits
 
 ### The BUS
