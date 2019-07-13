@@ -181,7 +181,7 @@ START:                  # 0x0A
 
 Binary representation:
 
-[multiplication.raw](programs/fibonacci.raw)
+[fibonacci.raw](programs/fibonacci.raw)
 
 
 ## Circuits
