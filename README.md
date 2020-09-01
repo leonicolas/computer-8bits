@@ -32,21 +32,13 @@ This project goal is to build a basic 8-bits computer with a functional 8-bits p
 
 For future versions I will expand the circuits modules and functionalities creating a more complex processor, but for now, I'm trying to keep the circuits as simple as possible.
 
-This processor project is not focused on performance, instead I prioritized the simplicity to create circuits easy to understand.
+This processor project is not focused on performance, instead I prioritized the simplicity creating circuits easy to understand.
 
 `Note`: There are two processor versions. The first one committed on the `master` branch that uses the DRAM memory created by me with registers and logic ports and the second one committed on the `logisim-native-ram` branch using the Logisim memory RAM component.
 
 ## Acknowledgments
 
 `Ben Eater` and his [YouTube channel](https://www.youtube.com/user/eaterbc) with great videos explaining about a processor architecture.
-
-## The current processor version
-
-This is the current processor circuit version. It's not complete yet, but it's quite cool, isn't?.
-
-![The processor](images/processor.png)
-
-Is there anything missing? Yes, I know, the ~~program counter (PC)~~, ~~instructions decoder~~, the ~~RAM memory~~, etc. I'll put these modules into the processor in the next versions.
 
 ## The microcode / instruction set
 
