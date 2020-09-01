@@ -5,7 +5,6 @@ A basic 8-bits computer created with [LogiSim](http://www.cburch.com/logisim/pt/
 - [Basic 8-bits computer simulation](#Basic-8-bits-computer-simulation)
   - [Project goal](#Project-goal)
   - [Acknowledgments](#Acknowledgments)
-  - [The current processor version](#The-current-processor-version)
   - [The microcode / instruction set](#The-microcode--instruction-set)
   - [Instructions](#Instructions)
   - [Program examples](#Program-examples)
